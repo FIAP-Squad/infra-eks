@@ -34,7 +34,7 @@ resource "aws_subnet" "public-us-east-1a" {
 
 resource "aws_subnet" "public-us-east-1b" {
   vpc_id                  = aws_vpc.eks_vpc.id
-  cidr_block              = "172.20.2.0;24"
+  cidr_block              = "172.20.2.0/24"
   availability_zone       = "us-east-1b"
   map_public_ip_on_launch = true
 
