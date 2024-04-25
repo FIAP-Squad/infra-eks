@@ -44,8 +44,8 @@ resource "aws_eks_node_group" "app" {
   }
 
   depends_on = [
-    aws_iam_role_policy_attachment.nbau-app-AmazonEKSWorkerNodePolicy,
-    aws_iam_role_policy_attachment.nbau-app-AmazonEKS_CNI_Policy,
-    aws_iam_role_policy_attachment.nbau-app-AmazonEC2ContainerRegistryReadOnly,
+    aws_iam_role_policy_attachment.eks_role_AmazonEKSWorkerNodePolicy,
+    aws_iam_role_policy_attachment.eks_role_AmazonEKS_CNI_Policy,
+    aws_iam_role_policy_attachment.eks_role_AmazonEC2ContainerRegistryReadOnly,
   ]
 }
