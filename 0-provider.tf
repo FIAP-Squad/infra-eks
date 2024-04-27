@@ -2,6 +2,12 @@ provider "aws" {
   region = "us-east-1"
 }
 
+provider "helm" {
+  kubernetes {
+    config_path = "~/.kube/config"
+  }
+}
+
 variable "cluster_name" {
   default = "fiap-fase3-eks"
 }
@@ -15,6 +21,10 @@ terraform {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 4.0"
+    }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "2.13.1"
     }
   }
 
