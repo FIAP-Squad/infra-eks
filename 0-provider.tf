@@ -16,6 +16,10 @@ variable "cluster_version" {
   default = "1.29"
 }
 
+variable "role" {
+  default = "arn:aws:iam::725886856494:role/LabRole"
+}
+
 terraform {
   required_providers {
     aws = {
@@ -29,7 +33,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "fiap-fase3-eks-tf"
+    bucket = "fiap-fase3-equipe15"
     key    = "backend"
     region = "us-east-1"
   }
