@@ -16,10 +16,6 @@ variable "cluster_version" {
   default = "1.29"
 }
 
-variable "role" {
-  default = "arn:aws:iam::725886856494:role/LabRole"
-}
-
 terraform {
   required_providers {
     aws = {
