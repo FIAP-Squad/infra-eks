@@ -1,0 +1,6 @@
+k get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d
+
+k port-forward svc/argocd-server -n argocd 3000:443
+
+argocd login localhost:3000
+argocd repo add git@github.com:FIAP-Squad/backend-users.git --ssh-private-key-path ~/.ssh/fiap-users.pub

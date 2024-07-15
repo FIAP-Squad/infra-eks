@@ -1,24 +1,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: showroom-v2
+  name: backend-orders
 spec:
   generators:
     - list:
         elements:
           - cluster: local
             url: https://kubernetes.default.svc
-            appName: fiap-backend
-            namespace: app
+            appName: backend-orders
+            namespace: orders
   template:
     metadata:
       name: '{{appName}}'
     spec:
       project: fiap-project
       source:
-        repoURL: git@github.com:gabrielsilvao/fiap-fase3-app.git
+        repoURL: git@github.com:FIAP-Squad/backend-orders.git
         targetRevision: main
-        path: k8s-manifests/
+        path: manifests/
       destination:
         server: '{{url}}'
         namespace: '{{namespace}}'
