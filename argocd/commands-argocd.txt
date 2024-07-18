@@ -4,3 +4,22 @@ k port-forward svc/argocd-server -n argocd 3000:443
 
 argocd login localhost:3000
 argocd repo add git@github.com:FIAP-Squad/backend-users.git --ssh-private-key-path ~/.ssh/fiap-users.pub
+
+--- add repos
+
+argocd repo add git@github.com:FIAP-Squad/backend-payment.git --ssh-private-key-path ~/.ssh/backend-payment --project fiap-project --name backend-payment
+
+argocd repo add git@github.com:FIAP-Squad/backend-products.git --ssh-private-key-path ~/.ssh/backend-products --project fiap-project --name backend-products
+
+argocd repo add git@github.com:FIAP-Squad/backend-users.git --ssh-private-key-path ~/.ssh/backend-users --project fiap-project --name backend-users
+
+argocd repo add git@github.com:FIAP-Squad/backend-orders.git --ssh-private-key-path ~/.ssh/backend-orders --project fiap-project --name backend-orders
+
+--- criar namespaces e applicationsets
+
+for x in orders products payment users; do k create namespace $x; done
+for x in `ls applicationset-*`; do k apply -f $x; done
+
+--- se criado no namespace errado (default), exclua e recrie em argocd
+
+for x in `k get applicationset --no-headers | awk {'print $1'}`; do k delete applicationset $x; done

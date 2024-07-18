@@ -1,7 +1,7 @@
 resource "aws_eks_cluster" "cluster" {
   name     = var.cluster_name
   version  = var.cluster_version
-  role_arn = "arn:aws:iam::414203079915:role/LabRole"
+  role_arn = aws_iam_role.policy-eks-cluster.arn
 
   vpc_config {
 
@@ -15,4 +15,12 @@ resource "aws_eks_cluster" "cluster" {
     ]
   }
 
+}
+
+output "name" {
+  value = aws_eks_cluster.cluster.name
+}
+
+output "endpoint" {
+  value = aws_eks_cluster.cluster.endpoint
 }
